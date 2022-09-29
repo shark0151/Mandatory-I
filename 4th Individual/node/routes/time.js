@@ -20,7 +20,25 @@ const URL = "http://127.0.0.1:8080/time";
  *       200:
  *         description: The current time
  */
-router.get("/", async (req, res, next) => {
+
+router.get("/", (req, res) => {
+  time = Date.now().toString();
+  console.log(time);
+  res.end(time);
+});
+
+/**
+ * @swagger
+ * /time/pyServer:
+ *   get:
+ *     summary: Returns the current time as a string
+ *     tags: [Time]
+ *     responses:
+ *       200:
+ *         description: The current time
+ */
+
+router.get("/pyServer", async (req, res, next) => {
   try {
     const response = await axios.get(URL);
     console.log(response.data);
